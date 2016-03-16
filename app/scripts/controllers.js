@@ -17,7 +17,7 @@ angular.module('confusionApp')
                     $scope.showMenu = true;
                 },
                 function(response) {
-                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                    $scope.message = "Error: "+ response.status + " " + response.statusText;
             });
                         
             $scope.select = function(setTab) {
@@ -68,8 +68,9 @@ angular.module('confusionApp')
                     console.log('incorrect');
                 }
                 else {
+                    console.log(feedbackFactory);
                     //save feedback
-                    feedbackFactory.getFeedback().save($scope.feedback);
+                    feedbackFactory.saveFeedback().save($scope.feedback);
 
                     //clear form
                     $scope.invalidChannelSelection = false;
@@ -86,7 +87,7 @@ angular.module('confusionApp')
             $scope.dish = {};
             $scope.showDish = false;
             $scope.message="Loading ...";
-            $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
+            $scope.dish = menuFactory.getDish().get({id:parseInt($stateParams.id,10)})
             .$promise.then(
                 function(response){
                     $scope.dish = response;
@@ -122,7 +123,7 @@ angular.module('confusionApp')
             $scope.showDish = false;
             $scope.message="Loading ...";
 
-            $scope.dish = menuFactory.getDishes().get({id:0})
+            $scope.dish = menuFactory.getDish().get({id:1})
             .$promise.then(
                 function(response){
                     $scope.dish = response;
@@ -135,7 +136,7 @@ angular.module('confusionApp')
 
             $scope.showPromotion = false;
 
-            $scope.promotion = menuFactory.getPromotion().get({id:0})
+            $scope.promotion = menuFactory.getPromotion().get({id:2})
             .$promise.then(
                 function(response){
                     $scope.promotion = response;
@@ -148,7 +149,7 @@ angular.module('confusionApp')
 
             $scope.showLeader = false;
 
-            $scope.leader = corporateFactory.getLeader().get({id:0})
+            $scope.leader = corporateFactory.getLeader().get({id:1})
             .$promise.then(
                 function(response){
                     $scope.leader = response;
